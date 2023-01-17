@@ -1,0 +1,32 @@
+.login{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10%;
+    color: rgb(116, 115, 115);
+}
+
+.loginInput{
+    background-color: rgb(65, 65, 65);
+    border: none;
+    width: 200px;
+    border-radius: 1rem;
+    padding: 0.5rem;
+    color: white;
+}
+.loginButton{
+    background-color: transparent;
+    color: rgb(56, 134, 138);;
+    border: 1px solid rgb(56, 134, 138);
+    border-radius: 1rem;
+    padding: 1rem;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.login__createAccount{
+    color: rgb(95, 95, 95);
+    cursor: pointer;
+}

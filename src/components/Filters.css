@@ -1,0 +1,48 @@
+.filters {
+  border-radius: 1rem;
+  background-color: rgba(1, 1, 1, 0.2);
+  color: rgb(155, 155, 155);
+  display: flex;
+  justify-content: center;
+  padding: 1rem;
+  gap: 1rem;
+}
+
+.filters > span {
+  cursor: pointer;
+}
+
+.optionsList {
+  list-style: none;
+  color: white;
+  display: flex;
+  gap: 1rem;
+  cursor: pointer;
+  background-color: rgba(1, 1, 1, 0.2);
+}
+
+.optionsList li {
+  background-color: transparent;
+  color: rgb(155, 155, 155);
+}
+.optionsList li:hover {
+    background-color: transparent;
+    color: rgb(56, 134, 138);
+  }
+.selected {
+  color: rgb(56, 134, 138);
+  font-weight: 600;
+}
+
+.difficulties{
+  background-color:transparent ;
+  color:rgb(56, 134, 138);
+  border:none;
+  outline:0px;
+}
+
+.difficulty{
+  border-radius: 1rem;
+  border:none;
+
+}
