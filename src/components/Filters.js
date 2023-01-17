@@ -21,7 +21,13 @@ const Filters = (props) => {
   return (
     <>
       <div className="filters">
-
+        <select
+          className="difficulties"
+          onChange={(e) => props.selectDiff(e.target.value)}
+        >
+          <option className="difficulty">easy</option>
+          <option className="difficulty">hard</option>
+        </select>
         <span
           className={modeWords ? "selected" : ""}
           onClick={() => {

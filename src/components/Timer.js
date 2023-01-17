@@ -2,7 +2,7 @@ import React from "react";
 import { useEffect, useState } from "react";
 import "./Timer.css";
 
-const Timer = ({ max, showModal }) => {
+const Timer = ({ max, showModal, isInit }) => {
   const [timeLeft, setTimeLeft] = useState(max);
   useEffect(() => {
     // exit early when we reach 0
@@ -11,6 +11,7 @@ const Timer = ({ max, showModal }) => {
       console.log(timeLeft);
       setTimeLeft(null);
       showModal(true);
+      isInit(true);
     }
 
     // save intervalId to clear the interval when the
