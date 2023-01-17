@@ -28,7 +28,8 @@ const Modal = (props) => {
 
         <RestartAltIcon className="restart"
             onClick={() => {
-              window.location.reload();
+              props.showModal(false);
+              props.Count();
             }}
           >
             Restart

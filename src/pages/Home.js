@@ -1,7 +1,7 @@
 import React from "react";
 import Filters from "../components/Filters";
 import "./Home.css";
-import { useState,  useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import Timer from "../components/Timer";
 import Modal from "../components/Modal";
 
@@ -81,33 +81,35 @@ const Home = () => {
   const [showModal, setShowModal] = useState(false);
   const [isInitial, setIsInitial] = useState(true);
   const [currentTime, setCurrentTime] = useState(new Date());
-  const [words, setWords] = useState(wordsPH);
+  const [words, setWords] = useState(null);
   const [difficulty, setDifficulty] = useState("easy");
-  
-  const Hard = () =>{
 
-    fetch(`https://random-word-api.herokuapp.com/word?number=${wordCount}`)
-    .then(response => response.json())
+  const mixWords = (words) => {
+    const mixedWords = words.sort(function () {
+      return Math.random() - 0.5;
+    });
+    return mixedWords;
+  };
 
-    .then(data => {
+  useEffect(() => {
+    if (difficulty == "hard") {
+      fetch(`https://random-word-api.herokuapp.com/word?number=${wordCount}`)
+        .then((response) => response.json())
 
-      const spacedWords = data.map((word)=> {
-        return word+" ";
-      })
-      console.log(data)
-      setWords(spacedWords)
-    })
-  }
-  
-
+        .then((data) => {
+          const spacedWords = data.map((word) => {
+            return word + " ";
+          });
+          console.log(data);
+          setWords(spacedWords);
+        });
+    } else {
+      setWords(mixWords(wordsPH));
+    }
+  }, [wordCount, difficulty]);
 
   const handleChangeDifficulty = (difficulty1) => {
-    if(difficulty1==="hard"){
-      Hard();
-    setDifficulty(difficulty);
-    }else{
-      setWords(wordsPH);
-    }
+    setDifficulty(difficulty1);
   };
 
   const handleChangeWordOption = (number) => {
@@ -116,11 +118,11 @@ const Home = () => {
 
   const handleChangeTimeOption = (number) => {
     setTime(number);
-    setWordCount(100)
+    setWordCount(100);
   };
 
   const handleChangeMode = (mode) => {
-    mode ? setWordCount(10) : setWordCount(100)
+    mode ? setWordCount(10) : setWordCount(100);
     setModeWords(mode);
   };
 
@@ -129,14 +131,35 @@ const Home = () => {
   };
 
   const handleShowModal = (value) => {
-    setShowModal(true);
+    setShowModal(value);
+    if (!value) {
+      stopTimer();
+      if (difficulty == "hard") {
+        fetch(`https://random-word-api.herokuapp.com/word?number=${wordCount}`)
+          .then((response) => response.json())
+
+          .then((data) => {
+            const spacedWords = data.map((word) => {
+              return word + " ";
+            });
+            console.log(data);
+            setWords(spacedWords);
+          });
+      } else {
+        setWords(mixWords(wordsPH));
+      }
+    }
+  };
+
+  const handleInitial = (value) => {
+    setIsInitial(value);
   };
 
   const handleKeyPress = (event) => {
     if (isInitial) {
       setTimer(true);
       setIsInitial(false);
-      setCurrentTime(Math.round(+new Date / 1000));
+      setCurrentTime(Math.round(+new Date() / 1000));
     }
 
     if (event.key === "Enter" || event.key === " ") {
@@ -148,6 +171,7 @@ const Home = () => {
       if (typedWord === words[0]) {
         if (modeWords && count === wordCount - 1) {
           setShowModal(true);
+          setIsInitial(true);
         }
         let a = words[0];
         const [, ...rest] = words;
@@ -166,13 +190,27 @@ const Home = () => {
         selectOption={handleChangeWordOption}
         selectMode={handleChangeMode}
         selectTime={handleChangeTimeOption}
-        selectDiff= {handleChangeDifficulty}
+        selectDiff={handleChangeDifficulty}
         mode={modeWords}
       ></Filters>
       <main className="home__main">
-        {showModal && <Modal modeWords = {modeWords ? true : false} wordCount={count} Time={modeWords ? currentTime : time}></Modal>}
+        {showModal && (
+          <Modal
+            modeWords={modeWords ? true : false}
+            wordCount={count}
+            Time={modeWords ? currentTime : time}
+            showModal={handleShowModal}
+            Count={() => {
+              setCount(0);
+            }}
+          ></Modal>
+        )}
         {!modeWords && timer && (
-          <Timer max={time} showModal={handleShowModal} />
+          <Timer
+            max={time}
+            showModal={handleShowModal}
+            isInit={handleInitial}
+          />
         )}
         {modeWords && (
           <div className="count">
@@ -184,11 +222,11 @@ const Home = () => {
             <span key={index}>{word}</span>
           ))}
         </p>
-        <input
+        {!showModal && <input
           type="text"
           className="textInput"
           onKeyPress={handleKeyPress}
-        ></input>
+        ></input>}
       </main>
     </div>
   );
