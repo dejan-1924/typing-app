@@ -22,6 +22,10 @@
   text-decoration: none;
 }
 
+.title{
+  color: rgb(155, 155, 155);
+}
+
 .NavLink:hover {
   color: white;
   opacity: 0.7;
@@ -30,7 +34,7 @@
 .navbarButton {
   background-color: transparent;
   color: rgb(155, 155, 155);
-  opacity: 0.9;
+  opacity: 1;
   padding: 0.5rem 1rem;
   border: 1px solid rgb(155, 155, 155);
   border-radius: 1rem;

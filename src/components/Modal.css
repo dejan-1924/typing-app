@@ -1,4 +1,4 @@
-.darkBG {
+.background {
   background-color: rgba(15, 15, 15, 0.7);
   width: 100vw;
   height: 100vh;
@@ -10,14 +10,13 @@
 }
 
 
-
 .modal {
   position: fixed;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 400px;
-  height: 200px;
+  width: 600px;
+  height: 300px;
   border-radius: 1rem;
   background-color: rgb(37, 36, 36);
   color: white;
@@ -35,6 +34,7 @@
   margin-top: 1rem;
   display: flex;
   gap: 1rem;
+  padding: 1.5rem;
 }
 
 .result{
