@@ -6,7 +6,8 @@ import {useNavigate} from "react-router-dom"
 
 const Modal = (props) => {
   let currentDate = Math.round(+new Date / 1000);
-  console.log(props.modeWords);
+  console.log("POCETAK" + props.Time);
+  console.log("SADA" + currentDate);
   const seconds = props.modeWords
     ? currentDate - props.Time
     : props.Time;
@@ -16,7 +17,7 @@ const Modal = (props) => {
 
   return (
     <>
-      <div className="darkBG"></div>
+      <div className="background"></div>
 
       <div className="modal">
         <div className="modalContent">

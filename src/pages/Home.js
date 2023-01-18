@@ -1,78 +1,12 @@
 import React from "react";
 import Filters from "../components/Filters";
 import "./Home.css";
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useRef, useCallback, useFoc } from "react";
 import Timer from "../components/Timer";
 import Modal from "../components/Modal";
+import wordsPH from "../words";
 
 const Home = () => {
-  const [wordsPH, setWordsPH] = useState([
-    "a ",
-    "about ",
-    "all ",
-    "also ",
-    "and ",
-    "as ",
-    "at ",
-    "be ",
-    "because ",
-    "but ",
-    "by ",
-    "can ",
-    "new ",
-    "no ",
-    "not ",
-    "now ",
-    "of ",
-    "on ",
-    "one ",
-    "only ",
-    "or ",
-    "other ",
-    "our ",
-    "out ",
-    "people ",
-    "say ",
-    "see ",
-    "she ",
-    "so ",
-    "some ",
-    "take ",
-    "tell ",
-    "than ",
-    "that ",
-    "the ",
-    "their ",
-    "them ",
-    "then ",
-    "there ",
-    "these ",
-    "they ",
-    "thing ",
-    "think ",
-    "this ",
-    "those ",
-    "time ",
-    "to ",
-    "two ",
-    "up ",
-    "use ",
-    "very ",
-    "want ",
-    "way ",
-    "we ",
-    "well ",
-    "what ",
-    "when ",
-    "which ",
-    "who ",
-    "will ",
-    "with ",
-    "would ",
-    "year ",
-    "you ",
-    "your ",
-  ]);
   const [count, setCount] = useState(0);
   const [modeWords, setModeWords] = useState(true);
   const [wordCount, setWordCount] = useState(10);
@@ -83,12 +17,15 @@ const Home = () => {
   const [currentTime, setCurrentTime] = useState(new Date());
   const [words, setWords] = useState(null);
   const [difficulty, setDifficulty] = useState("easy");
+  const inputRef = useRef();
 
   const mixWords = (words) => {
+    console.log("B");
     const mixedWords = words.sort(function () {
       return Math.random() - 0.5;
     });
-    return mixedWords;
+    let spacedMixedWords = mixedWords.map((word)=>{return word + " "});
+    return spacedMixedWords.splice(words.length-wordCount)
   };
 
   useEffect(() => {
@@ -104,26 +41,39 @@ const Home = () => {
           setWords(spacedWords);
         });
     } else {
-      setWords(mixWords(wordsPH));
+      console.log("a");
+      let newWords = mixWords([...wordsPH]);
+      setWords(newWords);
     }
-  }, [wordCount, difficulty]);
+  }, [wordCount, difficulty, modeWords]);
 
-  const handleChangeDifficulty = (difficulty1) => {
-    setDifficulty(difficulty1);
+  const newTry = () => {
+    setTimer(false);
+    setIsInitial(true);
+    setCount(0);
+    inputRef.current.value = "";
+    inputRef.current.focus();
+  };
+
+  const handleChangeDifficulty = (difficulty) => {
+    setDifficulty(difficulty);
+    newTry();
   };
 
   const handleChangeWordOption = (number) => {
     setWordCount(number);
+    newTry();
   };
 
   const handleChangeTimeOption = (number) => {
     setTime(number);
-    setWordCount(100);
+    newTry();
   };
 
   const handleChangeMode = (mode) => {
-    mode ? setWordCount(10) : setWordCount(100);
+    mode ? setWordCount(10) : setWordCount(200);
     setModeWords(mode);
+    newTry();
   };
 
   const stopTimer = () => {
@@ -134,7 +84,7 @@ const Home = () => {
     setShowModal(value);
     if (!value) {
       stopTimer();
-      if (difficulty == "hard") {
+      if (difficulty === "hard") {
         fetch(`https://random-word-api.herokuapp.com/word?number=${wordCount}`)
           .then((response) => response.json())
 
@@ -146,7 +96,8 @@ const Home = () => {
             setWords(spacedWords);
           });
       } else {
-        setWords(mixWords(wordsPH));
+        let newWords = mixWords([...wordsPH]);
+        setWords(newWords);
       }
     }
   };
@@ -156,7 +107,7 @@ const Home = () => {
   };
 
   const handleKeyPress = (event) => {
-    if (isInitial) {
+    if (isInitial ) {
       setTimer(true);
       setIsInitial(false);
       setCurrentTime(Math.round(+new Date() / 1000));
@@ -164,7 +115,7 @@ const Home = () => {
 
     if (event.key === "Enter" || event.key === " ") {
       let typedWord = event.target.value + " ";
-      if (typedWord[0] == " ") {
+      if (typedWord[0] === " ") {
         typedWord = typedWord.substring(1);
       }
 
@@ -173,7 +124,6 @@ const Home = () => {
           setShowModal(true);
           setIsInitial(true);
         }
-        let a = words[0];
         const [, ...rest] = words;
         setWords(rest);
         setCount((prevState) => prevState + 1);
@@ -222,11 +172,14 @@ const Home = () => {
             <span key={index}>{word}</span>
           ))}
         </p>
-        {!showModal && <input
-          type="text"
-          className="textInput"
-          onKeyPress={handleKeyPress}
-        ></input>}
+        {!showModal && (
+          <input
+            type="text"
+            className="textInput"
+            ref={inputRef}
+            onKeyDown={handleKeyPress}
+          ></input>
+        )}
       </main>
     </div>
   );
