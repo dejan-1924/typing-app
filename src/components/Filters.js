@@ -46,7 +46,7 @@ const Filters = (props) => {
           time
         </span>
         <div className="options">
-          <ul className="optionsList">
+          <ul className="options__list">
             {!props.mode &&
               timeOptions.map((item, index) => (
                 <li key={index} onClick={() => selectTime({ item })}>

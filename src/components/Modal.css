@@ -24,7 +24,7 @@
   gap: 2rem;
 }
 
-.modalContent {
+.modal__content {
   padding: 0px;
   font-size: 14px;
   color: #27a7a0;
@@ -54,7 +54,7 @@
   font-weight: 500;
 }
 
-.actions {
+.modal__actions {
   background-color: transparent;
   display: flex;
   align-items: center;

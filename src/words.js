@@ -100,7 +100,7 @@ const wordsPH = [
     "you",
     "your",
     "tomorrow",
-    "yesteday",
+    "yesterday",
     "since",
     "again",
     "awful",

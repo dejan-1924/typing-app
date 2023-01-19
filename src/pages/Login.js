@@ -11,15 +11,15 @@ const Login = () => {
         <h1>log in</h1>
         <input
           placeholder="username"
-          className="loginInput"
+          className="login__input"
           type="text"
         ></input>
         <input
           placeholder="password"
-          className="loginInput"
+          className="login__input"
           type="password"
         ></input>
-        <button className="loginButton">Log in</button>
+        <button className="login__button">Log in</button>
         <span
           className="login__createAccount"
           onClick={() => {

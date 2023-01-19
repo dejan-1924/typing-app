@@ -20,7 +20,7 @@
   background-color: transparent;
 }
 
-.loginInput {
+.login__input {
   background-color: rgb(65, 65, 65);
   border: none;
   width: 200px;
@@ -28,7 +28,7 @@
   padding: 0.5rem;
   color: white;
 }
-.loginButton {
+.login__button {
   background-color: transparent;
   color: rgb(56, 134, 138);
   border: 1px solid rgb(56, 134, 138);

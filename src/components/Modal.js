@@ -14,7 +14,7 @@ const Modal = (props) => {
       <div className="background"></div>
 
       <div className="modal">
-        <div className="modalContent">
+        <div className="modal__content">
           <div className="result">
             <span className="title">words</span>
             <span>{props.wordCount}</span>
@@ -28,7 +28,7 @@ const Modal = (props) => {
             <span>{Math.ceil((60 / seconds) * props.wordCount)}</span>
           </div>
         </div>
-        <div className="actions">
+        <div className="modal__actions">
           <RestartAltIcon
             className="restart"
             onClick={() => {

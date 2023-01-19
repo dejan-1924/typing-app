@@ -3,7 +3,7 @@ import "./ListItem.css";
 
 const ListItem = (props) => {
   return (
-    <div className="listItem">
+    <div className="list_item">
       <>
         <span className={` ${props.index === 0 ? "first" : ""}`}>
           {props.index + 1}. {props.results.username}
