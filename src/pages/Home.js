@@ -100,6 +100,8 @@ const Home = () => {
         let newWords = mixWords([...wordsPH]);
         setWords(newWords);
       }
+    }else{
+
     }
   };
 
