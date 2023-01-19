@@ -1,5 +1,5 @@
 import "./App.css";
-import { Route, Routes, Navigate } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
 import Leaderboard from "./pages/Leaderboard";
@@ -10,9 +10,9 @@ function App() {
   return (
     <div className="App">
       <Routes>
-        <Route path="/login" element={<Login></Login>}></Route>
-        <Route path="/register" element={<Register></Register>}></Route>
         <Route path="" element={<Layout></Layout>}>
+          <Route path="/login" element={<Login></Login>}></Route>
+          <Route path="/register" element={<Register></Register>}></Route>
           <Route path="/" element={<Home></Home>}></Route>
           <Route
             path="/leaderboard"

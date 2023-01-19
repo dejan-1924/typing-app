@@ -12,7 +12,7 @@
   cursor: pointer;
 }
 
-.optionsList {
+.options__list {
   list-style: none;
   color: white;
   display: flex;
@@ -21,11 +21,11 @@
   background-color: rgba(1, 1, 1, 0.2);
 }
 
-.optionsList li {
+.options__list li {
   background-color: transparent;
   color: rgb(155, 155, 155);
 }
-.optionsList li:hover {
+.options__list li:hover {
   background-color: transparent;
   color: rgb(56, 134, 138);
 }

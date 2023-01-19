@@ -4,9 +4,10 @@ import "./Timer.css";
 
 const Timer = ({ max, showModal, isInit }) => {
   const [timeLeft, setTimeLeft] = useState(max);
+
+
   useEffect(() => {
     if (timeLeft === 0) {
-      console.log(timeLeft);
       setTimeLeft(null);
       showModal(true);
       isInit(true);

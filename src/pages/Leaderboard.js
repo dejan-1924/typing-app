@@ -45,7 +45,7 @@ const Leaderboard = () => {
         ))}
       </div>
 
-      <div className="leaderboard_container">
+      <div className="leaderboard__container">
         {difficultyState === "easy" &&
           easy_results.map((result, index) => {
             return (

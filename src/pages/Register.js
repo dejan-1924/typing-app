@@ -7,16 +7,16 @@ const Register = () => {
         <h1>register</h1>
         <input
           placeholder="username"
-          className="loginInput"
+          className="login__input"
           type="text"
         ></input>
-        <input placeholder="email" className="loginInput" type="text"></input>
+        <input placeholder="email" className="login__input" type="text"></input>
         <input
           placeholder="password"
-          className="loginInput"
+          className="login__input"
           type="password"
         ></input>
-        <button className="loginButton">Register</button>
+        <button className="login__button">Register</button>
       </div>
     </div>
   );
