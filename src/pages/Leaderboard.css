@@ -1,0 +1,33 @@
+.leaderboard {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+}
+
+.leadearboard__difficulties {
+  background-color: rgba(1, 1, 1, 0.2);
+  color: rgb(155, 155, 155);
+  border-radius: 1rem;
+  padding: 1rem;
+  display: flex;
+  gap: 1rem;
+}
+
+.leaderboard_container {
+  border-radius: 1rem;
+  width: 20%;
+  min-width: 400px;
+  min-height: 250px;
+  background-color: rgba(1, 1, 1, 0.2);
+  color: white;
+}
+.leadearboard__difficulty {
+  color: rgb(155, 155, 155);
+  cursor: pointer;
+}
+
+.selected__diff {
+  color: rgb(56, 134, 138);
+}

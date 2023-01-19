@@ -2,7 +2,6 @@ import React from "react";
 import "./Filters.css";
 import { useState } from "react";
 
-const languages = ["english", "serbian"];
 const timeOptions = [15, 30, 60];
 const wordCount = [10, 25, 100];
 
