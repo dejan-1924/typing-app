@@ -7,15 +7,14 @@
 }
 
 .textInput {
-  background-color: rgb(155, 155, 155);;
+  background-color: rgb(155, 155, 155);
   border-radius: 1rem;
   padding: 0.5rem;
   border: none;
-  outline:0px;
+  outline: 0px;
 }
 
 .words {
-
   max-width: 700px;
   height: 75px;
   padding: 0rem 0.5rem 0rem 1rem;
@@ -24,10 +23,9 @@
   color: rgb(155, 155, 155);
   font-size: 2rem;
   font-weight: 500;
-
 }
 
-span{
+span {
   background-color: transparent;
 }
 .home__main {

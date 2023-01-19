@@ -9,7 +9,6 @@
   position: absolute;
 }
 
-
 .modal {
   position: fixed;
   display: flex;
@@ -37,7 +36,7 @@
   padding: 1.5rem;
 }
 
-.result{
+.result {
   border-radius: 1rem;
   display: flex;
   flex-direction: column;
@@ -47,15 +46,15 @@
   height: 50px;
   width: 50px;
   background-color: transparent;
-padding: 3rem;
+  padding: 3rem;
 }
 
-.title{
-  color:rgb(97, 97, 97);
+.title {
+  color: rgb(97, 97, 97);
   font-weight: 500;
 }
 
-.actions{
+.actions {
   background-color: transparent;
   display: flex;
   align-items: center;
@@ -64,19 +63,19 @@ padding: 3rem;
   gap: 4rem;
 }
 
-.restart{
+.restart {
   background-color: transparent;
   color: #27a7a0;
   cursor: pointer;
 }
 
-.signIn{
+.signIn {
   display: flex;
-  background-color: transparent ;
+  background-color: transparent;
   gap: 0.4rem;
 }
 
-.signInLink{
+.signInLink {
   color: #27a7a0;
   text-decoration: underline;
   cursor: pointer;

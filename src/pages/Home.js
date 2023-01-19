@@ -1,7 +1,7 @@
 import React from "react";
 import Filters from "../components/Filters";
 import "./Home.css";
-import { useState, useEffect, useRef, useCallback, useFoc } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import Timer from "../components/Timer";
 import Modal from "../components/Modal";
 import wordsPH from "../words";
@@ -19,20 +19,23 @@ const Home = () => {
   const [difficulty, setDifficulty] = useState("easy");
   const inputRef = useRef();
 
-  const mixWords = (words) => {
-    console.log("B");
-    const mixedWords = words.sort(function () {
-      return Math.random() - 0.5;
-    });
-    let spacedMixedWords = mixedWords.map((word)=>{return word + " "});
-    return spacedMixedWords.splice(words.length-wordCount)
-  };
+  const mixWords = useCallback(
+    (words) => {
+      const mixedWords = words.sort(function () {
+        return Math.random() - 0.5;
+      });
+      let spacedMixedWords = mixedWords.map((word) => {
+        return word + " ";
+      });
+      return spacedMixedWords.splice(words.length - wordCount);
+    },
+    [wordCount]
+  );
 
   useEffect(() => {
-    if (difficulty == "hard") {
+    if (difficulty === "hard") {
       fetch(`https://random-word-api.herokuapp.com/word?number=${wordCount}`)
         .then((response) => response.json())
-
         .then((data) => {
           const spacedWords = data.map((word) => {
             return word + " ";
@@ -41,11 +44,10 @@ const Home = () => {
           setWords(spacedWords);
         });
     } else {
-      console.log("a");
       let newWords = mixWords([...wordsPH]);
       setWords(newWords);
     }
-  }, [wordCount, difficulty, modeWords]);
+  }, [wordCount, difficulty, modeWords, mixWords]);
 
   const newTry = () => {
     setTimer(false);
@@ -92,7 +94,6 @@ const Home = () => {
             const spacedWords = data.map((word) => {
               return word + " ";
             });
-            console.log(data);
             setWords(spacedWords);
           });
       } else {
@@ -107,7 +108,7 @@ const Home = () => {
   };
 
   const handleKeyPress = (event) => {
-    if (isInitial ) {
+    if (isInitial) {
       setTimer(true);
       setIsInitial(false);
       setCurrentTime(Math.round(+new Date() / 1000));

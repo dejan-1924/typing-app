@@ -1,0 +1,11 @@
+.listItem {
+  display: flex;
+  justify-content: space-between;
+  background-color: transparent;
+  padding: 1rem;
+  color: rgb(155, 155, 155);
+}
+
+.first {
+  color: rgb(56, 134, 138);
+}
